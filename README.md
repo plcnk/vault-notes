@@ -48,3 +48,55 @@ Verify the server is running.
 ```shell
 vault status
 ```
+
+Note: Don't use dev server in production. Not secure.
+
+## Basic Secrets
+
+By default in a dev server, Key/Value v2 secrets engine is enabled at secret/ path.
+
+The difference between Key/Value v1 and v2 is that version 2 provides versioning and version 1 does not.
+
+### Usage
+
+Create a secret:
+
+```shell
+vault kv put secret/hello foo=world
+```
+
+Note: Using multiple commands using different keys will not stack. So your new command will overwrite your previous command. To insert multiple keys, execute this command:
+
+```shell
+vault kv put secret/hello foo=world excited=yes
+```
+
+Get a secret:
+
+```shell
+vault kv get secret/hello
+```
+
+Get a certain field:
+
+```shell
+vault kv get -field=excited secret/hello
+```
+
+Get a certain version:
+
+```shell
+vault kv get -version=1 secret/hello
+```
+
+Delete a secret:
+
+```shell
+vault kv delete secret/hello
+```
+
+Note: Only deletes the latest version. To delete specific versions, execute this command:
+
+```shell
+vault kv delete -versions=1,2 secret/hello
+```
