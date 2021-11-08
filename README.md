@@ -1,6 +1,8 @@
 # Vault-Notes
 
-Notes on how to use Hashicorp Vault
+Notes on how to use Hashicorp Vault.
+
+![Vault Logo](https://www.almtoolbox.com/blog_he/wp-content/uploads/2020/12/hashicorp-vault-logo-1.jpg)
 
 ## Install Vault
 
@@ -57,7 +59,7 @@ By default in a dev server, Key/Value v2 secrets engine is enabled at secret/ pa
 
 The difference between Key/Value v1 and v2 is that version 2 provides versioning and version 1 does not.
 
-### Usage
+### Secrets Usage
 
 Create a secret:
 
@@ -89,6 +91,12 @@ Get a certain version:
 vault kv get -version=1 secret/hello
 ```
 
+List existing keys:
+
+```shell
+vault kv list secret/
+```
+
 Delete a secret:
 
 ```shell
@@ -99,4 +107,34 @@ Note: Only deletes the latest version. To delete specific versions, execute this
 
 ```shell
 vault kv delete -versions=1,2 secret/hello
+```
+
+## Secrets Engines
+
+Secrets Engines are Vault components which store, generate or encrypt secrets. Documentation on various Seccrets Engines available [here](https://www.vaultproject.io/docs/secrets).
+
+### Secrets Engines Usage
+
+Enable a Secrets Engine:
+
+```shell
+vault secrets enable kv
+```
+
+```shell
+vault secrets enable -path=kv kv
+```
+
+Note: Path defaults to the name of the Secrets Engine.
+
+List enabled Secrets Engines:
+
+```shell
+vault secrets list
+```
+
+Disable Secrets Engine:
+
+```shell
+vault secrets disable kv/
 ```
