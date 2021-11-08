@@ -138,3 +138,7 @@ Disable Secrets Engine:
 ```shell
 vault secrets disable kv/
 ```
+
+## Dynamic Secrets
+
+Dynamic Secrets are generated when accessed. Examples using the AWS Secret Engine can be found [here](https://learn.hashicorp.com/tutorials/vault/getting-started-dynamic-secrets?in=vault/getting-started).
